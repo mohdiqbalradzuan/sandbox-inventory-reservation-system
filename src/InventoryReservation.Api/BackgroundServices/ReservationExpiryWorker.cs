@@ -2,32 +2,43 @@ using InventoryReservation.Core.Services;
 
 namespace InventoryReservation.Api.BackgroundServices;
 
-// Level 2 placeholder. Register this only after ExpireDueReservations is implemented.
-public sealed partial class ReservationExpiryWorker(
-    IInventoryService inventoryService,
-    ILogger<ReservationExpiryWorker> logger) : BackgroundService
+public partial class ReservationExpiryWorker : BackgroundService
 {
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    private readonly IInventoryService _inventoryService;
+    private readonly ILogger<ReservationExpiryWorker> _logger;
+
+    public ReservationExpiryWorker(
+        IInventoryService inventoryService,
+        ILogger<ReservationExpiryWorker> logger)
+    {
+        _inventoryService = inventoryService;
+        _logger = logger;
+    }
+
+    protected override async Task ExecuteAsync(
+        CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            try
+            var expiredCount =
+                _inventoryService.ExpireDueReservations();
+
+            if (expiredCount > 0)
             {
-                inventoryService.ExpireDueReservations();
-            }
-            catch (NotImplementedException)
-            {
-                // Level 1: expiry is intentionally not implemented yet.
-            }
-            catch (Exception ex)
-            {
-                LogErrorExpiringReservation(ex);
+                LogInformationExpiringReservation(
+                    "Expired reservation(s).",
+                    expiredCount);
             }
 
-            await Task.Delay(TimeSpan.FromSeconds(1), stoppingToken);
+            await Task.Delay(
+                TimeSpan.FromSeconds(1),
+                stoppingToken);
         }
     }
 
     [LoggerMessage(Level = LogLevel.Error, Message = "Error while expiring reservations.")]
     private partial void LogErrorExpiringReservation(Exception ex);
+
+    [LoggerMessage(Level = LogLevel.Information, Message = "{message}, Count: {count}")]
+    private partial void LogInformationExpiringReservation(string message, int count);
 }

@@ -1,23 +1,39 @@
 using InventoryReservation.Core.Models;
 using InventoryReservation.Core.Services;
+using Microsoft.Extensions.Options;
 using Xunit;
 
-namespace InventoryReservation.Tests.Unit;
+namespace InventoryReservation.Tests.Level1.BasicReservation;
 
 public sealed class BasicReservationTests
 {
-    private static InMemoryInventoryService CreateService(int stock)
+    private static InMemoryInventoryService CreateService(
+        int totalStock,
+        TimeProvider? timeProvider = null,
+        TimeSpan? holdDuration = null
+    )
     {
-        return new InMemoryInventoryService(new Product
+        var product = new Product
         {
             Id = Guid.NewGuid(),
             Sku = "TEST-001",
             DisplayName = "Test Product",
-            TotalStock = stock
+            TotalStock = totalStock
+        };
+
+        var options = Options.Create(new ReservationOptions
+        {
+            HoldDuration =
+                holdDuration ?? TimeSpan.FromMinutes(2)
         });
+
+        return new InMemoryInventoryService(
+            product,
+            timeProvider ?? TimeProvider.System,
+            options);
     }
 
-    [Fact(Skip = "TDD starting point: implement Reserve first")]
+    [Fact]
     public void ReserveOneItemWhenStockAvailableShouldSucceed()
     {
         var service = CreateService(1);
@@ -28,7 +44,7 @@ public sealed class BasicReservationTests
         Assert.Equal(0, service.GetSnapshot().AvailableStock);
     }
 
-    [Fact(Skip = "TDD starting point: implement Reserve first")]
+    [Fact]
     public void ReserveWhenStockUnavailableShouldFail()
     {
         var service = CreateService(0);
