@@ -1,0 +1,32 @@
+root = true
+
+[*.cs]
+# ----------------------------------------------------
+# 1. Core Formatting Rules
+# ----------------------------------------------------
+indent_style = space
+indent_size = 4
+end_of_line = crlf
+insert_final_newline = true
+
+# ----------------------------------------------------
+# 2. Modern C# Code Style Preferences
+# ----------------------------------------------------
+# Prefer file-scoped namespaces (C# 10+)
+csharp_style_namespace_declarations = file_scoped:error
+
+# Prefer var when type is apparent (e.g., MyClass x = new();)
+csharp_style_var_when_type_is_apparent = true:suggestion
+
+# Enforce modifier order (e.g., public static)
+csharp_preferred_modifier_order = public,private,protected,internal,file,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,volatile,async:suggestion
+
+# ----------------------------------------------------
+# 3. .NET Code Quality & Reliability Rules
+# ----------------------------------------------------
+# Treat built-in .NET formatting & design rules as warnings or errors
+dotnet_analyzer_diagnostic.category-Formatting.severity = warning
+dotnet_analyzer_diagnostic.category-Design.severity = warning
+
+# Example: Enforce using directives placement (outside namespace)
+dotnet_style_qualification_for_field = false:suggestion

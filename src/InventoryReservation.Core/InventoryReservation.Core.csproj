@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<!-- Forces the compiler to run .NET's built-in Roslyn analyzers during a build -->
+		<EnforceCodeAnalysisInBuild>true</EnforceCodeAnalysisInBuild>
+		<!-- Optional: Treat all code analysis warnings as errors to strict-proof your main branch -->
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<!-- Configures the analysis mode (Recommended includes a great balance of security, performance, and styling) -->
+		<AnalysisMode>Recommended</AnalysisMode>
+	</PropertyGroup>
+</Project>

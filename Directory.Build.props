@@ -1,0 +1,40 @@
+<Project>
+  <!-- 
+    =====================================================================================
+    Global Build & Code Analysis Configuration
+    =====================================================================================
+  -->
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    
+    <!-- Forces the compiler to run .NET's built-in Roslyn analyzers during compilation -->
+    <EnforceCodeAnalysisInBuild>true</EnforceCodeAnalysisInBuild>
+    
+    <!-- Configures Microsoft's analysis aggressiveness. 
+         Options: Default, Recommended (Best balance), All (Very strict) -->
+    <AnalysisMode>Recommended</AnalysisMode>
+    <AnalysisLevel>latest</AnalysisLevel>
+
+    <!-- Treat all analyzer warnings as build errors to keep the main branch perfectly clean -->
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- Keep this true so the build treats code analysis violations as errors -->
+    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <!-- 
+    =====================================================================================
+    Global NuGet Packages (Applies to all projects in the solution)
+    =====================================================================================
+  -->
+  <ItemGroup>
+    <!-- Globally injects SonarAnalyzer for deep code smell and security analysis -->
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.3.0.106239">
+      <!-- PrivateAssets ensures this package does not leak as a dependency to consumer projects -->
+      <PrivateAssets>all</PrivateAssets>
+      <!-- IncludeAssets tells the compiler to only use this for development linting/analysis -->
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>
