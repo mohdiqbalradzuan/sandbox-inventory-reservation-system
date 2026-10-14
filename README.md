@@ -16,7 +16,6 @@ The main goal is not to build a complete e-commerce application. The focus is co
 
 - **Framework:** .NET 10.0 
 - **Web Framework:** React/Vite
-- 
 - **Database:** In memory object
 - **Testing:** xUnit
 
