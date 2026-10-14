@@ -1,4 +1,4 @@
-﻿# Inventory Reservation System
+# Inventory Reservation System
 
 A small .NET coding challenge / proof of concept for preventing overselling in a high-concurrency flash-sale scenario.
 
@@ -58,8 +58,6 @@ dotnet build
 dotnet test --no-restore
 ```
 
-----
-
 ## Projects / Solution Structure
 
 | Project | Purpose |
@@ -101,8 +99,6 @@ Active ------------> Cancelled
 
 `Confirmed`, `Cancelled`, and `Expired` are terminal outcomes for the current POC.
 
----
-
 ## Why the Inventory Is In Memory
 
 The coding challenge explicitly asks for inventory to be maintained in memory.
@@ -122,8 +118,8 @@ This is intentional rather than an omission.
 A production implementation would normally move authoritative inventory state to persistent shared storage such as SQL Server or another appropriate distributed data store, especially when multiple API instances are involved.
 
 ---
+
 # Development Phase
----
 
 ## Level 1 - Basic Inventory Reservation
 
@@ -151,8 +147,6 @@ The reservation operation:
 4. rejects the request if there is insufficient stock
 5. creates one `Active` reservation
 6. returns the reservation result
-
----
 
 ## Level 2 - Reservation Lifecycle & Expiry
 
@@ -195,8 +189,6 @@ ExpireDueReservations()
 A background worker is responsible for periodically invoking the method during normal API execution.
 
 This keeps the business rule independently testable.
-
----
 
 ## Level 3 - Concurrency Handling
 
@@ -266,8 +258,6 @@ Because the in-memory inventory service is shared by incoming requests, the serv
 SonarAnalyzer was added manually to the project and configured through the shared `build.props` file so code-quality and style rules are checked during the build.
 
 A CI/CD YAML workflow was also added early in the project so build and automated test checks run before further development is added. This gives the project a simple quality gate while the reservation logic, API, SignalR integration, and UI simulation continue to evolve.
-
---- 
 
 ## xUnit Automated Tests with `dotnet test --no-restore`
 
