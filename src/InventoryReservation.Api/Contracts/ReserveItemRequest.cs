@@ -1,3 +1,13 @@
+using System.Text.Json.Serialization;
+
 namespace InventoryReservation.Api.Contracts;
 
-public sealed record ReserveItemRequest(string UserId, int Quantity);
+public class ReserveItemRequest()
+{
+    [JsonRequiredAttribute]
+    public required string UserId { get; set; }
+
+    [JsonRequiredAttribute]
+    public required int Quantity { get; set; }
+}
+
