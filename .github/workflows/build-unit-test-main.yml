@@ -3,9 +3,7 @@ name: .NET Build and Unit Tests
 
 on:
   push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main, develop]
+    branches: [main]
 
 jobs:
   build-and-test:
