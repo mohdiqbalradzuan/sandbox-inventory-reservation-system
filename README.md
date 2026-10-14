@@ -92,9 +92,9 @@ Rules:
 Reservation lifecycle:
 
 ```text
-                    -> Confirmed
-Active ------------> Cancelled
-                    -> Expired
+         |---> Confirmed
+Active ------> Cancelled
+         |---> Expired
 ```
 
 `Confirmed`, `Cancelled`, and `Expired` are terminal outcomes for the current POC.
