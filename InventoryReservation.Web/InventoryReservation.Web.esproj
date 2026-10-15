@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.6165494">
+
+	<PropertyGroup>
+    <StartupCommand>npm run dev</StartupCommand>
+
+    <!-- Don't run npm run build every time you press F5 -->
+    <ShouldRunBuildScript>false</ShouldRunBuildScript>
+
+    <!-- Optional: don't run npm install automatically on every build/restore -->
+    <ShouldRunNpmInstall>false</ShouldRunNpmInstall>
+  </PropertyGroup>
+
+</Project>

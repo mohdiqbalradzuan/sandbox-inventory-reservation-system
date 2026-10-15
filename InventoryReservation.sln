@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.10.12224.181 stable
+VisualStudioVersion = 18.10.12224.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryReservation.Core", "InventoryReservation.Core\InventoryReservation.Core.csproj", "{A1A1A1A1-1111-4444-8888-111111111111}"
 EndProject
@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.Build.props = Directory.Build.props
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "InventoryReservation.Web", "InventoryReservation.Web\InventoryReservation.Web.esproj", "{DF267C10-5E99-8E43-5CF8-476DCE444E01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +36,12 @@ Global
 		{C3C3C3C3-3333-4444-8888-333333333333}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3C3C3C3-3333-4444-8888-333333333333}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3C3C3C3-3333-4444-8888-333333333333}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF267C10-5E99-8E43-5CF8-476DCE444E01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF267C10-5E99-8E43-5CF8-476DCE444E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF267C10-5E99-8E43-5CF8-476DCE444E01}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DF267C10-5E99-8E43-5CF8-476DCE444E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF267C10-5E99-8E43-5CF8-476DCE444E01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF267C10-5E99-8E43-5CF8-476DCE444E01}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -17,17 +17,6 @@ public sealed class InMemoryInventoryService(
     private readonly Lock _sync = new();
     private readonly List<Reservation> _reservations = new();
 
-    public InMemoryInventoryService()
-        : this(new Product
-        {
-            Id = Guid.Parse("8982c329-ab2d-4596-8fcd-6772d3c3b203"),
-            Sku = "FLASHSALEPHEADPHONE-001",
-            DisplayName = "Flash Sale Headphones",
-            TotalStock = 100
-        }, TimeProvider.System, new OptionsWrapper<ReservationOptions>(new ReservationOptions() { HoldDuration = TimeSpan.FromMinutes(2) }))
-    {
-    }
-
     public InventorySnapshot GetSnapshot()
     {
         lock (_sync)
