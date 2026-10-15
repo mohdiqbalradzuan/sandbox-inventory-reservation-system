@@ -28,7 +28,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\InventoryReservation.Core\InventoryReservation.Core.csproj" />
-		<ProjectReference Include="..\..\src\InventoryReservation.Api\InventoryReservation.Api.csproj" />
+		<ProjectReference Include="..\InventoryReservation.Core\InventoryReservation.Core.csproj" />
+		<ProjectReference Include="..\InventoryReservation.Api\InventoryReservation.Api.csproj" />
 	</ItemGroup>
 </Project>

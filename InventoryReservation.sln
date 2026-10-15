@@ -2,16 +2,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
 VisualStudioVersion = 18.10.12224.181 stable
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryReservation.Core", "src\InventoryReservation.Core\InventoryReservation.Core.csproj", "{A1A1A1A1-1111-4444-8888-111111111111}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryReservation.Core", "InventoryReservation.Core\InventoryReservation.Core.csproj", "{A1A1A1A1-1111-4444-8888-111111111111}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryReservation.Api", "src\InventoryReservation.Api\InventoryReservation.Api.csproj", "{B2B2B2B2-2222-4444-8888-222222222222}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryReservation.Api", "InventoryReservation.Api\InventoryReservation.Api.csproj", "{B2B2B2B2-2222-4444-8888-222222222222}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryReservation.Tests", "tests\InventoryReservation.Tests\InventoryReservation.Tests.csproj", "{C3C3C3C3-3333-4444-8888-333333333333}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryReservation.Tests", "InventoryReservation.Tests\InventoryReservation.Tests.csproj", "{C3C3C3C3-3333-4444-8888-333333333333}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BD6607E5-354D-450F-89DE-91AB18E72AE0}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.github\workflows\build-unit-test-main.yml = .github\workflows\build-unit-test-main.yml
 		Directory.Build.props = Directory.Build.props
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global

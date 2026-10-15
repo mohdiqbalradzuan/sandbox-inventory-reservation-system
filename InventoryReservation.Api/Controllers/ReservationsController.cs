@@ -23,7 +23,33 @@ public sealed class ReservationsController(IInventoryService inventoryService) :
         return Created($"/api/reservations/{result.Reservation!.Id}", result);
     }
 
-    // Level 2 endpoints can be added here:
-    // POST /api/reservations/{id}/confirm
-    // POST /api/reservations/{id}/cancel
+    [HttpPost("{id}/confirm")]
+    public IActionResult Confirm(Guid id)
+    {
+        var result = inventoryService.Confirm(id);
+
+        if (!result.Success)
+        {
+            return result.ErrorCode == "INVALID_CONFIRM_RESERVATION_LIFECYCLE"
+                ? Conflict(result)
+                : BadRequest(result);
+        }
+
+        return Ok(result.Reservation);
+    }
+
+    [HttpPost("{id}/cancel")]
+    public IActionResult Cancel(Guid id)
+    {
+        var result = inventoryService.Cancel(id);
+
+        if (!result.Success)
+        {
+            return result.ErrorCode == "INVALID_CANCEL_RESERVATION_LIFECYCLE"
+                ? Conflict(result)
+                : BadRequest(result);
+        }
+
+        return Ok(result.Reservation);
+    }
 }
