@@ -58,6 +58,13 @@ dotnet build
 dotnet test --no-restore
 ```
 
+### 5. Run the custom script 'start-inventory-system.ps1' to start the inventory system
+
+```powershell
+& Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+>> .\scripts\start-inventory-system.ps1
+```
+
 ## Projects / Solution Structure
 
 | Project | Purpose |
