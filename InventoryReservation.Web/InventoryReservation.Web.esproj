@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.6165494">
+
+	<PropertyGroup>
+		<StartupCommand>npm run dev</StartupCommand>
+
+		<ShouldRunBuildScript>false</ShouldRunBuildScript>
+		<ShouldRunNpmInstall>false</ShouldRunNpmInstall>
+
+		<!-- Prevent .NET global package references from being applied to this JS project -->
+		<RestoreEnableGlobalPackageReference>false</RestoreEnableGlobalPackageReference>
+	</PropertyGroup>
+
+</Project>

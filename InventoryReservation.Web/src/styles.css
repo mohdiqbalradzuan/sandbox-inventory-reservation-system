@@ -1,0 +1,461 @@
+/*
+ * Inventory Reservation dashboard - Bootstrap-compatible theme.
+ * Based on the starter project's src/styles.css and .page-shell markup.
+ * Import bootstrap/dist/css/bootstrap.min.css BEFORE this file.
+ * Component overrides are scoped to .page-shell; Bootstrap's grid and
+ * button variants remain available. No JSX class-name changes are needed.
+ */
+
+:root {
+  --ir-background: #17181a;
+  --ir-surface: #232427;
+  --ir-surface-raised: #2e2f31;
+  --ir-border: #34363a;
+  --ir-text: #f7f7f7;
+  --ir-muted: #a9aaad;
+  --ir-eyebrow: #b8b8b8;
+  --ir-focus: #93c5fd;
+  --ir-font:
+    Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+  background-color: var(--ir-background);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Bootstrap applies its defaults directly to body, not just :root. */
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: var(--ir-font);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ir-text);
+  background-color: var(--ir-background);
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.page-shell {
+  /* Let Bootstrap components inherit the dashboard's palette. */
+  --bs-body-font-family: var(--ir-font);
+  --bs-body-color: var(--ir-text);
+  --bs-body-color-rgb: 247, 247, 247;
+  --bs-body-bg: var(--ir-background);
+  --bs-body-bg-rgb: 23, 24, 26;
+  --bs-emphasis-color: var(--ir-text);
+  --bs-emphasis-color-rgb: 247, 247, 247;
+  --bs-secondary-color: var(--ir-muted);
+  --bs-secondary-color-rgb: 169, 170, 173;
+  --bs-secondary-bg: var(--ir-surface);
+  --bs-secondary-bg-rgb: 35, 36, 39;
+  --bs-tertiary-color: var(--ir-muted);
+  --bs-tertiary-color-rgb: 169, 170, 173;
+  --bs-tertiary-bg: var(--ir-surface-raised);
+  --bs-tertiary-bg-rgb: 46, 47, 49;
+  --bs-border-color: var(--ir-border);
+  --bs-border-color-translucent: rgba(255, 255, 255, 0.12);
+  --bs-heading-color: var(--ir-text);
+  --bs-link-color: #93c5fd;
+  --bs-link-color-rgb: 147, 197, 253;
+  --bs-link-hover-color: #bfdbfe;
+  --bs-link-hover-color-rgb: 191, 219, 254;
+
+  width: 100%;
+  max-width: 1500px;
+  min-width: 0;
+  margin: 0 auto;
+  padding: 48px 24px;
+  color: var(--ir-text);
+}
+
+.page-shell .eyebrow {
+  margin: 0 0 8px;
+  color: var(--ir-eyebrow);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.page-shell h1 {
+  margin: 0;
+  color: var(--ir-text);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.page-shell h2 {
+  margin: 0 0 12px;
+  color: var(--ir-text);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.page-shell .subtitle {
+  margin: 12px 0 0;
+  color: var(--ir-muted);
+}
+
+.page-shell .muted {
+  color: var(--ir-muted);
+}
+
+/* These selectors take precedence over Bootstrap's .card defaults. */
+.page-shell .card {
+  --bs-card-bg: var(--ir-surface);
+  --bs-card-color: var(--ir-text);
+  --bs-card-border-color: var(--ir-border);
+  --bs-card-border-radius: 16px;
+  --bs-card-cap-bg: var(--ir-surface-raised);
+  --bs-card-cap-color: var(--ir-text);
+
+  min-width: 0;
+  margin-top: 20px;
+  padding: 20px;
+  color: var(--ir-text);
+  background-color: var(--ir-surface);
+  border: 1px solid var(--ir-border);
+  border-radius: 16px;
+}
+
+.page-shell .card > p:last-child {
+  margin-bottom: 0;
+}
+
+/* A stats card is a grid, not Bootstrap's default flex column. */
+.page-shell .stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.page-shell .stats > div {
+  min-width: 0;
+  padding: 18px;
+  background-color: var(--ir-surface-raised);
+  border-radius: 12px;
+}
+
+.page-shell .stats > div > span {
+  display: block;
+  color: var(--ir-muted);
+  font-size: 13px;
+}
+
+.page-shell .stats > div > strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--ir-text);
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Explicit row direction prevents .card's flex-direction: column
+ * from stacking the text and button on desktop. */
+.page-shell .controls {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.page-shell .controls > div {
+  min-width: 0;
+}
+
+.page-shell .controls p {
+  margin-bottom: 0;
+  color: var(--ir-muted);
+}
+
+/* Style the starter's plain button, but leave .btn variants alone. */
+.page-shell .controls button:not(.btn):not(.btn-close) {
+  flex-shrink: 0;
+  padding: 11px 16px;
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #17181a;
+  background-color: #e4e6eb;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.page-shell .controls button:not(.btn):not(.btn-close):hover:not(:disabled) {
+  background-color: #ffffff;
+}
+
+.page-shell .controls button:not(.btn):not(.btn-close):focus-visible {
+  outline: 3px solid var(--ir-focus);
+  outline-offset: 3px;
+}
+
+.page-shell .controls button:not(.btn):not(.btn-close):disabled {
+  color: #b5b7bc;
+  background-color: #393b40;
+  cursor: not-allowed;
+}
+
+.page-shell .grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.page-shell .grid > * {
+  min-width: 0;
+}
+
+/* Bootstrap form controls: preserve its focus/validation behavior. */
+.page-shell .form-control,
+.page-shell .form-select {
+  color: var(--ir-text);
+  background-color: var(--ir-surface-raised);
+}
+
+.page-shell .form-control::placeholder {
+  color: var(--ir-muted);
+  opacity: 1;
+}
+
+.page-shell .form-control:disabled,
+.page-shell .form-select:disabled {
+  color: var(--ir-muted);
+  background-color: var(--ir-surface);
+}
+
+.page-shell .form-select {
+  --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23a9aaad' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+
+/* Dark tables, including Bootstrap striped/hover/active rows. */
+.page-shell table {
+  width: 100%;
+  color: var(--ir-text);
+  font-size: 14px;
+  border-collapse: collapse;
+}
+
+.page-shell .table {
+  --bs-table-color: var(--ir-text);
+  --bs-table-bg: transparent;
+  --bs-table-border-color: var(--ir-border);
+  --bs-table-striped-color: var(--ir-text);
+  --bs-table-striped-bg: rgba(255, 255, 255, 0.035);
+  --bs-table-hover-color: var(--ir-text);
+  --bs-table-hover-bg: rgba(255, 255, 255, 0.055);
+  --bs-table-active-color: var(--ir-text);
+  --bs-table-active-bg: rgba(255, 255, 255, 0.075);
+
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+.page-shell .table > thead {
+  --bs-table-color: var(--ir-muted);
+  --bs-table-bg: var(--ir-surface-raised);
+}
+
+.page-shell .table-responsive {
+  max-width: 100%;
+}
+
+/* Fallback for a plain HTML table without Bootstrap's .table class. */
+.page-shell table:not(.table) :is(th, td) {
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--ir-border);
+}
+
+.page-shell table:not(.table) th {
+  color: var(--ir-muted);
+  background-color: var(--ir-surface-raised);
+}
+
+/* Simulation form control */
+.form {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.form-control {
+  width: 100%;
+
+  padding: 9px 11px;
+
+  color: #e8ecef;
+
+  background: #171b1f;
+
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 6px;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+
+  outline: none;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+/* Placeholder */
+.form-control::placeholder {
+  color: #68727c;
+
+  opacity: 1;
+}
+
+/* Hover */
+.form-control:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* Focus */
+.form-control:focus {
+  background: #191e23;
+
+  border-color: var(--modal-accent, #4aa3ff);
+
+  box-shadow:
+    0 0 0 1px rgba(74, 163, 255, 0.15),
+    0 0 0 3px rgba(74, 163, 255, 0.08);
+}
+
+.form-control-error {
+  border-color: #df626b !important;
+
+  box-shadow:
+    0 0 0 1px rgba(223, 98, 107, 0.12),
+    0 0 0 3px rgba(223, 98, 107, 0.06);
+}
+
+.form-control-error:focus {
+  border-color: #ee7079 !important;
+
+  box-shadow:
+    0 0 0 1px rgba(238, 112, 121, 0.18),
+    0 0 0 3px rgba(238, 112, 121, 0.09);
+}
+
+/* Error message */
+.form-error {
+  display: flex;
+  align-items: center;
+
+  margin-top: -1px;
+
+  color: #ee7d85;
+
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.form-control:disabled {
+  color: #707981;
+
+  background: #15191c;
+
+  border-color: rgba(255, 255, 255, 0.07);
+
+  cursor: not-allowed;
+
+  opacity: 0.7;
+}
+
+.form-control:-webkit-autofill,
+.form-control:-webkit-autofill:hover,
+.form-control:-webkit-autofill:focus {
+  -webkit-text-fill-color: #e8ecef;
+
+  -webkit-box-shadow: 0 0 0 1000px #171b1f inset;
+
+  transition: background-color 5000s ease-in-out 0s;
+
+  caret-color: #e8ecef;
+}
+
+.live-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #344258;
+  color: #91a0b3;
+  border-radius: 999px;
+  padding: 8px 11px;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.live-chip.is-live {
+  color: #ff9d9d;
+  border-color: rgba(255, 94, 94, 0.45);
+  background: rgba(255, 72, 72, 0.08);
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.is-live .live-dot {
+  animation: pulse 1.1s infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.25;
+    transform: scale(0.72);
+  }
+}
+
+@media (max-width: 760px) {
+  .page-shell {
+    padding: 32px 16px;
+  }
+
+  .page-shell .stats,
+  .page-shell .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .page-shell .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-shell .controls button:not(.btn):not(.btn-close) {
+    transition: none;
+  }
+}

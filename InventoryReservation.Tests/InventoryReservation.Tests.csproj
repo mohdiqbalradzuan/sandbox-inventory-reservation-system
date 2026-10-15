@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<IsPackable>false</IsPackable>
+		<IsTestProject>true</IsTestProject>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<!-- Forces the compiler to run .NET's built-in Roslyn analyzers during a build -->
+		<EnforceCodeAnalysisInBuild>true</EnforceCodeAnalysisInBuild>
+		<!-- Optional: Treat all code analysis warnings as errors to strict-proof your main branch -->
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<!-- Configures the analysis mode (Recommended includes a great balance of security, performance, and styling) -->
+		<AnalysisMode>Recommended</AnalysisMode>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" Version="10.10.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+		<PackageReference Include="xunit" Version="2.9.3" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="3.1.4">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\InventoryReservation.Core\InventoryReservation.Core.csproj" />
+		<ProjectReference Include="..\InventoryReservation.Api\InventoryReservation.Api.csproj" />
+	</ItemGroup>
+</Project>

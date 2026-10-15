@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "API-Web",
+    "Projects": [
+      {
+        "Path": "InventoryReservation.Api\\InventoryReservation.Api.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "InventoryReservation.Web\\InventoryReservation.Web.esproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
