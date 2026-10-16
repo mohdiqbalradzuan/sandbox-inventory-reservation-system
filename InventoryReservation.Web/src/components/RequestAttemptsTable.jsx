@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 
 RequestAttemptsTable.propTypes = {
-  inventorySnapshot: PropTypes.object,
+  simulationEvents: PropTypes.object,
 };
 
 export default function RequestAttemptsTable(props) {
-  const { inventorySnapshot } = props;
+  const { simulationEvents } = props;
 
   return (
     <section className="card">
@@ -23,14 +23,14 @@ export default function RequestAttemptsTable(props) {
           </thead>
 
           <tbody>
-            {inventorySnapshot?.reservations.length === 0 ? (
+            {simulationEvents?.length === 0 ? (
               <tr>
                 <td colSpan="4" className="text-center text-secondary py-4">
                   No request attempts yet.
                 </td>
               </tr>
             ) : (
-              inventorySnapshot?.reservations.map((attempt, index) => (
+              simulationEvents?.map((attempt, index) => (
                 <tr key={`${attempt.userId}-${index}`}>
                   <td>{attempt.userId}</td>
 

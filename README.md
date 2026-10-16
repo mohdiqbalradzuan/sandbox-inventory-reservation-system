@@ -389,6 +389,21 @@ The dashboard provides a simple real-time view of the reservation system:
 
 The purpose of the dashboard is to visually demonstrate the same behaviours covered by the automated tests, particularly reservation lifecycle handling, stock release, expiry, and concurrent reservation scenarios.
 
+**Note:** The reservation hold duration and initial stock quantity can be configured in `.\InventoryReservation.Api\appsettings.json`. Restart the API application after updating the values.
+
+```json
+{
+  "Reservation": {
+    "HoldDuration": "00:01:00", -- 
+    "StockQuantity": 1
+  },
+
+....
+
+```
+> ***Note: A shorter hold duration & minimal stock quantity is configured here for faster API and dashboard simulation. The required 2-minute hold duration is still used as the default in the xUnit tests.***
+
+
 ---
 
 ## Current Scope and Production Considerations

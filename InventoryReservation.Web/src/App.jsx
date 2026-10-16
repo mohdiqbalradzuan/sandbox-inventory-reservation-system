@@ -15,6 +15,7 @@ export default function App() {
   const [holdDuration, setHoldDuration] = useState("");
   const [simulationStart, setSimulationStart] = useState(false);
   const [countdownEndTime, setCountdownEndTime] = useState(null);
+  const [simulationEvents, setSimulationEvents] = useState([]);
 
   useEffect(() => {
     getHoldDurationConfig().then((data) => {
@@ -28,8 +29,11 @@ export default function App() {
     const holdDurationSeconds = 60;
 
     setCountdownEndTime(Date.now() + holdDurationSeconds * 1000);
-
     // start simulation...
+  };
+
+  const handleSimulationEvent = (event) => {
+    setSimulationEvents((previous) => [...previous, event]);
   };
 
   return (
@@ -41,6 +45,35 @@ export default function App() {
           Visual test harness for stock reservation, expiry and concurrency
           scenarios.
         </p>
+        <p className="subtitle">
+          <strong>Notes:</strong>
+        </p>
+
+        <ul>
+          <li>
+            The React dashboard and SignalR integration are additional features
+            built on top of the original coding challenge requirements.
+          </li>
+          <li>
+            The purpose of the dashboard is to visually demonstrate the same
+            behaviours covered by the automated tests, particularly reservation
+            lifecycle handling, stock release, expiry, and concurrent
+            reservation scenarios.
+          </li>
+          <li>
+            The reservation hold duration and initial stock quantity can be
+            configured in{" "}
+            <code className="bg-dark text-light p-1 rounded">
+              <i>.\InventoryReservation.Api\appsettings.json</i>
+            </code>
+            . Restart the API application after updating the values.
+          </li>
+          <li>
+            A shorter hold duration & minimal stock quantity is configured here
+            for faster API and dashboard simulation. The required 2-minute hold
+            duration is still used as the default in the xUnit tests.
+          </li>
+        </ul>
       </header>
       <div className="row mt-4">
         <div className="col-sm-2 d-flex align-items-center">
@@ -71,10 +104,12 @@ export default function App() {
           setSimulationStart(value);
           handleStartSimulation();
         }}
+
+        callbackSimulationEvent={handleSimulationEvent}
       />
 
       <section className="grid">
-        <RequestAttemptsTable inventorySnapshot={inventorySnapshot} />
+        <RequestAttemptsTable simulationEvents={simulationEvents} />
         <ReservationsTable inventorySnapshot={inventorySnapshot} />
       </section>
     </main>

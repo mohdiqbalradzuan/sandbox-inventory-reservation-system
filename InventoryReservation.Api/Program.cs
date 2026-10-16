@@ -11,15 +11,15 @@ builder.Services.AddSignalR();
 // One process-wide instance for the in-memory POC.
 builder.Services.AddHostedService<ReservationExpiryWorker>();
 builder.Services.AddSingleton<IInventoryService, InMemoryInventoryService>();
+builder.Services.Configure<ReservationOptions>(
+    builder.Configuration.GetSection("Reservation"));
 builder.Services.AddSingleton(new Product
 {
     Id = Guid.Parse("8982c329-ab2d-4596-8fcd-6772d3c3b203"),
     Sku = "FLASHSALEPHEADPHONE-001",
     DisplayName = "Flash Sale Headphones",
-    TotalStock = 100
+    TotalStock = builder.Configuration.GetValue<int>("Reservation:StockQuantity"),
 });
-builder.Services.Configure<ReservationOptions>(
-    builder.Configuration.GetSection("Reservation"));
 builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddCors(options =>
 {
