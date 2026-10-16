@@ -394,7 +394,7 @@ The purpose of the dashboard is to visually demonstrate the same behaviours cove
 ```json
 {
   "Reservation": {
-    "HoldDuration": "00:01:00", -- 
+    "HoldDuration": "00:01:00",
     "StockQuantity": 1
   },
 
