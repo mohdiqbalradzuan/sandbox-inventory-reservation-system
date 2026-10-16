@@ -4,16 +4,17 @@ import PropTypes from "prop-types";
 
 const defaultSimulationFormData = {
   requestCount: 10,
-  confirmedRate: 50,
-  cancelledRate: 30,
+  confirmedRate: 100,
+  cancelledRate: 0,
 };
 
 SimulationControls.propTypes = {
   onSimulationStart: PropTypes.func,
+  callbackSimulationEvent: PropTypes.func,
 };
 
 export default function SimulationControls(props) {
-  const { onSimulationStart } = props;
+  const { onSimulationStart, callbackSimulationEvent } = props;
 
   const [formData, setFormData] = useState(defaultSimulationFormData);
   const [errors, setErrors] = useState({});
@@ -27,11 +28,11 @@ export default function SimulationControls(props) {
   }, []);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type } = e.target;
 
     setFormData((current) => ({
       ...current,
-      [name]: value,
+      [name]: type === "number" && !isNaN(value) ? Number(value) : value,
     }));
 
     if (errors[name]) {
@@ -59,15 +60,15 @@ export default function SimulationControls(props) {
         "Request count must be a positive integer.";
     }
 
-    if (Number(formData.confirmedRate) === 0) {
-      validationErrors.confirmedRate =
-        "Confirm percentages must be positive integer.";
-    }
+    // if (Number(formData.confirmedRate) === 0) {
+    //   validationErrors.confirmedRate =
+    //     "Confirm percentages must be positive integer.";
+    // }
 
-    if (Number(formData.cancelledRate) === 0) {
-      validationErrors.cancelledRate =
-        "Cancel percentages must be positive integer.";
-    }
+    // if (Number(formData.cancelledRate) === 0) {
+    //   validationErrors.cancelledRate =
+    //     "Cancel percentages must be positive integer.";
+    // }
 
     if (
       !validationErrors.confirmedRate &&
@@ -102,8 +103,7 @@ export default function SimulationControls(props) {
       cancelPercent: formData.cancelledRate,
       onEvent: (event) => {
         setSimulationEvents((previous) => [...previous, event]);
-        console.debug("onEvent: ", event);
-        console.debug("onEvent: ", simulationEvents);
+        callbackSimulationEvent(event);
       },
     };
 

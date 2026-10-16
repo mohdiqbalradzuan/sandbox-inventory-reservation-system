@@ -41,7 +41,7 @@ public sealed class ReservationsController(IInventoryService inventoryService, I
         }
 
         await inventoryHub.Clients.All.ReservationConfirmed(result.Reservation!);
-        return Ok(result.Reservation);
+        return Ok(result);
     }
 
     [HttpPost("{id}/cancel")]
@@ -57,6 +57,6 @@ public sealed class ReservationsController(IInventoryService inventoryService, I
         }
 
         await inventoryHub.Clients.All.ReservationCancelled(result.Reservation!);
-        return Ok(result.Reservation);
+        return Ok(result);
     }
 }
