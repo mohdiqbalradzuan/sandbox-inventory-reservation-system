@@ -288,6 +288,10 @@ The concurrency tests verify both result counts and the inventory business invar
 
 At the current stage, the project has a passing automated test suite covering Levels 1-3 of the core in-memory implementation.
 
+![xUnitTest Result 1](docs/xunit-test-result-1.png)
+
+![xUnitTest Result 2](docs/xunit-test-result-2.png)
+
 ---
 
 ## Why There Is an API Project?

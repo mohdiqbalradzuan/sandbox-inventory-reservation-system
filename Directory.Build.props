@@ -3,7 +3,7 @@
     =====================================================================================
     Global Build & Code Analysis Configuration
     =====================================================================================
-  -->
+	-->
 	<PropertyGroup>
 		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -27,7 +27,7 @@
     =====================================================================================
     Global NuGet Packages (Applies to all projects in the solution)
     =====================================================================================
-  -->
+	-->
 	<ItemGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
 		<PackageReference
 		  Include="SonarAnalyzer.CSharp"
